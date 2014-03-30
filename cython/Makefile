@@ -18,12 +18,12 @@ SYSLIBS= $(shell $(PYTHON) -c "import distutils.sysconfig; print(distutils.sysco
 
 all: hello harmonic_sum
 
-hello harmonic_sum: %: %.o
+hello harmonic_sum needs_crypto: %: %.o
 	$(LINKCC) -o $@ $^ -L$(LIBDIR1) -L$(LIBDIR2) -l$(PYLIB) $(LIBS) $(SYSLIBS) $(LINKFORSHARED)
 
-hello.o harmonic_sum.o: %.o: %.c
+hello.o harmonic_sum.o needs_crypto.o: %.o: %.c
 	$(CC) -c $^ -I$(INCDIR) -I$(PLATINCDIR)
 
 CYTHON=cython
-hello.c harmonic_sum.c: %.c: ../%.py
+hello.c harmonic_sum.c needs_crypto.c: %.c: ../%.py
 	@$(CYTHON) -o $*.c --embed ../$*.py

@@ -4,3 +4,4 @@
 *.o
 cython/hello
 cython/harmonic_sum
+cython/needs_crypto
