@@ -2,6 +2,6 @@
 
 for program in hello harmonic_sum needs_crypto
 do
-    (cd cython; make $program)
-    (cd nuitka; nuitka ../$program.py)
+    (cd cython && make TARGET=$program)
+    (cd nuitka && make TARGET=$program)
 done
