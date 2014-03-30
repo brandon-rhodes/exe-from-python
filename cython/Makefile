@@ -1,6 +1,8 @@
 # Based on the Makefile at:
 # https://github.com/cython/cython/blob/master/Demos/embed/Makefile
 
+TARGETS=hello harmonic_sum needs_crypto
+
 PYTHON=python
 PYVERSION=$(shell $(PYTHON) -c "import sys; print(sys.version[:3])")
 
@@ -16,14 +18,14 @@ LINKFORSHARED=$(shell $(PYTHON) -c "import distutils.sysconfig; print(distutils.
 LIBS=$(shell $(PYTHON) -c "import distutils.sysconfig; print(distutils.sysconfig.get_config_var('LIBS'))")
 SYSLIBS= $(shell $(PYTHON) -c "import distutils.sysconfig; print(distutils.sysconfig.get_config_var('SYSLIBS'))")
 
-all: hello harmonic_sum
+all: $(TARGETS)
 
-hello harmonic_sum needs_crypto: %: %.o
+$(TARGETS): %: %.o
 	$(LINKCC) -o $@ $^ -L$(LIBDIR1) -L$(LIBDIR2) -l$(PYLIB) $(LIBS) $(SYSLIBS) $(LINKFORSHARED)
 
-hello.o harmonic_sum.o needs_crypto.o: %.o: %.c
+$(patsubst %, %.o, $(TARGETS)): %.o: %.c
 	$(CC) -c $^ -I$(INCDIR) -I$(PLATINCDIR)
 
 CYTHON=cython
-hello.c harmonic_sum.c needs_crypto.c: %.c: ../%.py
+$(patsubst %, %.c, $(TARGETS)): %.c: ../%.py
 	@$(CYTHON) -o $*.c --embed ../$*.py
