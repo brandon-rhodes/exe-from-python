@@ -3,3 +3,4 @@
 *.exe
 *.o
 cython/hello
+cython/harmonic_sum

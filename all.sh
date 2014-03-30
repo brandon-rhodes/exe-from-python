@@ -1,4 +1,7 @@
 # Build everything
 
-(cd cython; make)
-(cd nuitka; nuitka ../hello.py)
+for program in hello harmonic_sum
+do
+    (cd cython; make $program)
+    (cd nuitka; nuitka ../$program.py)
+done
