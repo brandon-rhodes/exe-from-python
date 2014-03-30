@@ -1,0 +1,7 @@
+*.build
+*.c
+*.exe
+*.o
+*.so
+build/
+hello2
