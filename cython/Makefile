@@ -14,22 +14,24 @@ LINKFORSHARED=$(shell $(PYTHON) -c "import distutils.sysconfig; print(distutils.
 LIBS=$(shell $(PYTHON) -c "import distutils.sysconfig; print(distutils.sysconfig.get_config_var('LIBS'))")
 SYSLIBS= $(shell $(PYTHON) -c "import distutils.sysconfig; print(distutils.sysconfig.get_config_var('SYSLIBS'))")
 
-hello2: hello2.o
+hello: hello.o
 	$(LINKCC) -o $@ $^ -L$(LIBDIR1) -L$(LIBDIR2) -l$(PYLIB) $(LIBS) $(SYSLIBS) $(LINKFORSHARED)
 
-hello2.o: hello2.c
+hello.o: hello.c
 	$(CC) -c $^ -I$(INCDIR) -I$(PLATINCDIR)
 
-CYTHON=../../cython.py
-hello2.c: hello2.pyx
-	@$(PYTHON) $(CYTHON) --embed hello2.pyx
+CYTHON=cython
+hello.c: ../hello.py
+	cp ../hello.py .
+	@$(CYTHON) --embed hello.py
+	rm hello.py
 
-all: hello2
+all: hello
 
 clean:
 	@echo Cleaning Demos/embed
-	@rm -f *~ *.o *.so core core.* *.c hello2 test.output
+	@rm -f *~ *.o *.so core core.* *.c hello test.output
 
 test: clean all
-	./hello2 > test.output
-	$(PYTHON) assert_equal.py hello2.output test.output
+	./hello > test.output
+	$(PYTHON) assert_equal.py hello.output test.output
