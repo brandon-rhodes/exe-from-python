@@ -1,3 +1,6 @@
+# Under 64-bit Ubuntu, SWIG will need some help:
+# SWIG_FEATURES=-I/usr/include/x86_64-linux-gnu pip install -r requirements.txt
+
 cython==0.20.1
 nuitka==0.5.1.1
 
