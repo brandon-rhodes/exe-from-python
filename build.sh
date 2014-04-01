@@ -1,7 +1,9 @@
-# Build everything
+#!/bin/bash
 
-for program in hello harmonic_sum needs_crypto needs_m2crypto
+cd $(dirname "${BASH_SOURCE[0]}")
+
+for script in $(ls scripts | sed '/\.py$/s/\.py//')
 do
-    (cd cython && make TARGET=$program)
-    (cd nuitka && make TARGET=$program)
+    (cd cython && make TARGET=$script)
+    (cd nuitka && make TARGET=$script)
 done
