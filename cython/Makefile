@@ -27,5 +27,5 @@ $(TARGET).o: $(TARGET).c
 	$(CC) -c $< -I$(INCDIR) -I$(PLATINCDIR)
 
 CYTHON := cython
-$(TARGET).c: ../$(TARGET).py
+$(TARGET).c: ../scripts/$(TARGET).py
 	@$(CYTHON) -o $@ --embed $<
