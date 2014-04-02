@@ -3,11 +3,18 @@
 # environment's site.py in every standalone executable.  Which makes
 # every standalone executable will give IOError for "orig-prefix.txt".
 
-# Override the target script on the command line: make TARGET=...
-TARGET := hello
 VERSION := 0.5.1.1
-PYTHON := /usr/bin/python2.7
 NUITKA := Nuitka-$(VERSION)/bin/nuitka
+
+# Override the TARGET on the command line: make TARGET=...
+TARGET := hello
+
+# We run Nuitka with the system Python, but add the virtual
+# environment's site-packages directory manually to PYTHONPATH so that
+# Nuitka can find our dependencies.
+
+SITE_PACKAGES := $(shell python -c 'import sys; print [p for p in sys.path if "site-packages" in p][0]')
+PYTHON := PYTHONPATH=$(SITE_PACKAGES) /usr/bin/python2.7
 
 all: $(TARGET).exe $(TARGET).dist/$(TARGET).exe
 
