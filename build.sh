@@ -2,6 +2,7 @@
 
 cd $(dirname "${BASH_SOURCE[0]}")
 
+rm -rf output/cython output/nuitka
 mkdir -p output/cython output/nuitka
 
 for script in $(ls scripts | sed '/\.py$/s/\.py//')
@@ -9,5 +10,5 @@ do
     (cd cython && make TARGET=$script)
     cp cython/$script output/cython/$script
     (cd nuitka && make TARGET=$script)
-    cp nuitka/$script.dist/$script.exe output/nuitka/$script
+    cp -r nuitka/$script.dist output/nuitka/
 done

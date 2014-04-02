@@ -8,6 +8,6 @@ do
     echo
     ./cython/$script
     echo
-    ./nuitka/$script
+    ./nuitka/$script.dist/$script.exe
     echo
 done
