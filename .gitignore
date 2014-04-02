@@ -1,6 +1,7 @@
 *.c
 *.exe
 *.o
+*.pyc
 cache/Nuitka-0.5.1.1.tar.gz
 cache/Nuitka-0.5.1.1/
 cython/hello
@@ -12,3 +13,4 @@ nuitka/*.dist
 output/cython/
 output/nuitka/
 pyinstaller/
+trace.out
