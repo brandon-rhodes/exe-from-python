@@ -1,7 +1,8 @@
 # Based on the Makefile at:
 # https://github.com/cython/cython/blob/master/Demos/embed/Makefile
 
-TARGET := hello  # Override this on the command line: make TARGET=...
+# Override the target script on the command line: make TARGET=...
+TARGET := hello
 
 PYTHON := python
 PYVERSION := $(shell $(PYTHON) -c "import sys; print(sys.version[:3])")
