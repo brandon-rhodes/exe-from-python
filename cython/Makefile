@@ -1,7 +1,7 @@
 # Based on the Makefile at:
 # https://github.com/cython/cython/blob/master/Demos/embed/Makefile
 
-# Override the target script on the command line: make TARGET=...
+# You can override the TARGET on the command line with: make TARGET=...
 TARGET := hello
 
 PYTHON := python

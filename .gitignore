@@ -1,11 +1,11 @@
 *.c
 *.exe
 *.o
+cache/Nuitka-0.5.1.1.tar.gz
+cache/Nuitka-0.5.1.1/
 cython/hello
 cython/harmonic_sum
 cython/needs_crypto
 cython/needs_m2crypto
-nuitka/Nuitka-0.5.1.1.tar.gz
-nuitka/Nuitka-0.5.1.1/
 nuitka/*.build
 nuitka/*.dist
