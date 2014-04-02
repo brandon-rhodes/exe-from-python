@@ -8,6 +8,11 @@ do
     echo
     cython/$script
     echo
-    nuitka/$script.exe
+    if [ -x nuitka/$script.exe ]
+    then
+        nuitka/$script.exe
+    else
+        nuitka/$script.dist/$script.exe
+    fi
     echo
 done
