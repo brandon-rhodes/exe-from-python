@@ -11,3 +11,4 @@ nuitka/*.build
 nuitka/*.dist
 output/cython/
 output/nuitka/
+pyinstaller/
