@@ -2,7 +2,7 @@
 
 cd $(dirname "${BASH_SOURCE[0]}")
 
-for script in $(ls ../scripts | sed '/\.py$/s/\.py//')
+for script in $(ls cython)
 do
     echo ========= $script =========
     echo
