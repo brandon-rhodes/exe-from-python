@@ -4,6 +4,7 @@
 *.pyc
 cache/Nuitka-0.5.1.1.tar.gz
 cache/Nuitka-0.5.1.1/
+cython/cascade
 cython/hello
 cython/harmonic_sum
 cython/needs_crypto

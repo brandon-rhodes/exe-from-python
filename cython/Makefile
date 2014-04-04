@@ -19,14 +19,32 @@ LINKFORSHARED := $(shell $(PYTHON) -c "import distutils.sysconfig; print(distuti
 LIBS := $(shell $(PYTHON) -c "import distutils.sysconfig; print(distutils.sysconfig.get_config_var('LIBS'))")
 SYSLIBS :=  $(shell $(PYTHON) -c "import distutils.sysconfig; print(distutils.sysconfig.get_config_var('SYSLIBS'))")
 
+ifeq "$(TARGET)" "cascade"
+ MAIN := cascade_init
+ SCRIPT := cascade_init.pyx
+ EXTRAS := cascade cascade2 cascade3
+else
+ MAIN := $(TARGET)
+ SCRIPT := $(TARGET).py
+ EXTRAS :=
+endif
+
+OBJECTS := $(addsuffix .o, $(MAIN) $(EXTRAS))
+
 all: $(TARGET)
 
-$(TARGET): $(TARGET).o
-	$(LINKCC) -o $@ $< -L$(LIBDIR1) -L$(LIBDIR2) -l$(PYLIB) $(LIBS) $(SYSLIBS) $(LINKFORSHARED)
+$(TARGET): $(OBJECTS)
+	$(LINKCC) -o $@ $(OBJECTS) -L$(LIBDIR1) -L$(LIBDIR2) -l$(PYLIB) \
+		$(LIBS) $(SYSLIBS) $(LINKFORSHARED)
 
-$(TARGET).o: $(TARGET).c
+$(OBJECTS): %.o: %.c
 	$(CC) -c $< -I$(INCDIR) -I$(PLATINCDIR)
 
-CYTHON := cython
-$(TARGET).c: ../scripts/$(TARGET).py
-	@$(CYTHON) -o $@ --embed $<
+$(MAIN).c: ../scripts/$(SCRIPT)
+	cython -o $@ --embed $<
+
+$(addsuffix .c, $(EXTRAS)): %.c: ../scripts/%.py
+	cython -o $@ $<
+
+clean:
+	rm -f *.c *.o

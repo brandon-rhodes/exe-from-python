@@ -5,7 +5,7 @@ cd $(dirname "${BASH_SOURCE[0]}")
 rm -rf output/cython output/nuitka pyinstaller/dist
 mkdir -p output/cython output/nuitka pyinstaller
 
-for script in $(ls scripts | sed '/\.py$/s/\.py//')
+for script in cascade harmonic_sum hello needs_crypto needs_m2crypto
 do
     (cd cython && make TARGET=$script)
     cp cython/$script output/cython/$script
