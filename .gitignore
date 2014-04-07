@@ -10,6 +10,7 @@ cython/hello
 cython/harmonic_sum
 cython/needs_crypto
 cython/needs_m2crypto
+experiments/cython-boto/boto*
 nuitka/*.build
 nuitka/*.dist
 output/cython/
