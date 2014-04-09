@@ -8,8 +8,7 @@ cache/Nuitka-0.5.1.1/
 cython/cascade
 cython/hello
 cython/harmonic_sum
-cython/needs_crypto
-cython/needs_m2crypto
+cython/needs_*
 experiments/cython-boto/boto*
 nuitka/*.build
 nuitka/*.dist

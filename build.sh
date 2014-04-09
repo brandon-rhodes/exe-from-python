@@ -1,11 +1,19 @@
 #!/bin/bash
 
+set -e
 cd $(dirname "${BASH_SOURCE[0]}")
 
 rm -rf output/cython output/nuitka pyinstaller/dist
 mkdir -p output/cython output/nuitka pyinstaller
 
-for script in cascade harmonic_sum hello needs_crypto needs_m2crypto
+if [ "$#" = "0" ]
+then
+    scripts="cascade harmonic_sum hello needs_crypto needs_flask needs_m2crypto"
+else
+    scripts="$@"
+fi
+
+for script in $scripts
 do
     (cd cython && make TARGET=$script)
     cp cython/$script output/cython/$script
