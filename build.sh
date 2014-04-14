@@ -19,5 +19,5 @@ do
     cp cython/$script output/cython/$script
     (cd nuitka && make TARGET=$script)
     cp -r nuitka/$script.dist output/nuitka/
-    (cd pyinstaller && pyinstaller --onefile ../scripts/$script.py)
+    #(cd pyinstaller && pyinstaller --onefile ../scripts/$script.py)
 done
