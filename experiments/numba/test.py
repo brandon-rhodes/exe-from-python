@@ -1,6 +1,7 @@
 import numba
 
-@numba.autojit
+#@numba.autojit
+@numba.jit('f8,f8')
 def f(x, y):
     return x * x + y * y
 
