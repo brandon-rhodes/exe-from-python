@@ -7,4 +7,4 @@ PyInstaller==2.1
 
 M2Crypto==0.22.3
 pycrypto==2.6.1
-llvmpy
+# llvmpy
