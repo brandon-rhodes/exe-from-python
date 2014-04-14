@@ -6,9 +6,12 @@ cd $(dirname "${BASH_SOURCE[0]}")
 rm -rf output/cython output/nuitka pyinstaller/dist
 mkdir -p output/cython output/nuitka pyinstaller
 
-if [ "$#" = "0" ]
+if [ "$#" = "1" -a "$1" = "all" ]
 then
     scripts="cascade harmonic_sum hello needs_crypto needs_flask needs_m2crypto"
+elif [ "$#" = "0" ]
+then
+    scripts="hello"
 else
     scripts="$@"
 fi
