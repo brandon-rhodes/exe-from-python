@@ -2,7 +2,7 @@
 # SWIG_FEATURES=-I/usr/include/x86_64-linux-gnu pip install -r requirements.txt
 
 cython==0.20.1
-nuitka==0.5.1.1
+nuitka==0.9
 PyInstaller==2.1
 
 M2Crypto==0.22.3
